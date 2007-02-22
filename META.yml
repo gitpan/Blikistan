@@ -1,0 +1,12 @@
+author: Luke Closs <cpan@5thplane.com>
+build_requires: 
+  Test::More: 0.42
+distribution_type: module
+generated_by: Module::Install version 0.64
+license: perl
+name: Blikistan
+no_index: 
+  directory: 
+    - inc
+    - t
+version: 0.01
