@@ -41,7 +41,7 @@ Blikistan (both the country and software) is completely paperless.
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 =head1 FUNCTIONS
 
@@ -57,14 +57,13 @@ sub new {
 
     my $self = {
         magic_opts => { },
-        magic_language => 'perl',
+        magic_engine => 'perl',
         %opts,
     };
 
     # Defaults
     $self->{magic_opts}{config_page}       ||= 'Blog Config';
     $self->{magic_opts}{post_tag}          ||= 'blog post';
-    $self->{magic_opts}{template_name}     ||= 'blog.tmpl';
     $self->{magic_opts}{show_latest_posts} ||= 5;
 
     croak 'rester is mandatory' unless $self->{rester};
@@ -83,7 +82,7 @@ sub print_blog {
     my $self = shift;
 
     my $magic_class = "Blikistan::MagicEngine::"
-                       . ucfirst($self->{magic_language});
+                       . ucfirst($self->{magic_engine});
     eval "require $magic_class";
     die if $@;
 

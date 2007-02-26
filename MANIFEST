@@ -14,10 +14,18 @@ lib/Blikistan.pm
 lib/Blikistan/MagicEngine.pm
 lib/Blikistan/MagicEngine/Perl.pm
 lib/Blikistan/MagicEngine/Python.pm
+lib/Blikistan/MagicEngine/TT2.pm
+lib/Blikistan/MagicEngine/Jemplate.pm
+lib/Blikistan/MagicEngine/YamlConfig.pm
 Makefile.PL
 MANIFEST			This list of files
 Changes
 README
 META.yml
 t/blikistan.t
+t/test.tmpl
 templates/blog.tmpl
+templates/jblog.tmpl
+templates/jemplate/container.tmpl
+templates/jemplate/head.tmpl
+templates/jemplate/posts.tmpl

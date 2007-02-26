@@ -9,4 +9,6 @@ no_index:
   directory: 
     - inc
     - t
-version: 0.01
+requires: 
+  Socialtext::Resting::Utils: 0.10
+version: 0.02

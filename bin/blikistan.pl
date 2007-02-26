@@ -12,4 +12,4 @@ print header();
 my $r = get_rester( 'rester-config' => "$FindBin::Bin/.blog-rester" ); 
 
 my $blikistan = Blikistan->new( rester => $r );
-$blikistan->print_blog;
+print $blikistan->print_blog;
