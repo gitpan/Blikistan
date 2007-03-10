@@ -21,7 +21,7 @@ Render_page: {
     $r->put_pagetag('post1', 'blog post');
     $r->put_page('post2', 'content2');
     $r->put_pagetag('post2', 'blog post');
-    $r->set_taggedpages('blog post', ['Post Template', 'post1', 'post2']);
+    $r->set_taggedpages('blog post', ['post1', 'post2']);
     $r->response->set_always('header', 'Today');
     my $b = Blikistan->new(
         rester => $r,

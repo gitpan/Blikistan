@@ -10,5 +10,6 @@ no_index:
     - inc
     - t
 requires: 
-  Socialtext::Resting::Utils: 0.10
-version: 0.02
+  Socialtext::Resting::Utils: 0.11
+  Template: 0
+version: 0.03

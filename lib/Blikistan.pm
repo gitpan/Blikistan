@@ -41,7 +41,7 @@ Blikistan (both the country and software) is completely paperless.
 
 =cut
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 =head1 FUNCTIONS
 
@@ -63,8 +63,12 @@ sub new {
 
     # Defaults
     $self->{magic_opts}{config_page}       ||= 'Blog Config';
-    $self->{magic_opts}{post_tag}          ||= 'blog post';
+    $self->{magic_opts}{blog_tag}          ||= 'blog post';
     $self->{magic_opts}{show_latest_posts} ||= 5;
+
+    if (!$self->{magic_opts}{template_name}) {
+        $self->{magic_opts}{template_page}     ||= 'Blog Template';
+    }
 
     croak 'rester is mandatory' unless $self->{rester};
 

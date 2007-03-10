@@ -5,10 +5,12 @@ use inc::Module::Install;
 
 name            'Blikistan';
 author          'Luke Closs <cpan@5thplane.com>';
-build_requires  'Test::More'        => '0.42';
 license         'perl';
 version_from    'lib/Blikistan.pm';
-requires        'Socialtext::Resting::Utils' => '0.10';
+
+build_requires 'Test::More'           => '0.42';
+requires 'Socialtext::Resting::Utils' => '0.11';
+requires 'Template';
 
 # Auto-install all dependencies from CPAN
 auto_install;

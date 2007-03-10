@@ -10,12 +10,16 @@ sub print_blog {
     
     my $params = $self->load_config($r);
     $params->{rester} = $r;
-    ($params->{post_tag} = $self->{post_tag}) =~ s/ /%20/g;
+    $params->{blog_tag} ||= $self->{blog_tag};
+
+    if (my $who = $self->{subblog}) {
+        $params->{blog_tag} = $params->{subblogs}{$who}{blog_tag};
+    }
 
     my $show_latest = delete $params->{show_latest_posts}
         || $self->{show_latest_posts};
 
-    my @posts = grep { !/template$/i } $r->get_taggedpages($self->{post_tag});
+    my @posts = $r->get_taggedpages($params->{blog_tag});
     @posts = splice @posts, 0, $show_latest;
 
     $r->accept('text/html');
@@ -43,6 +47,8 @@ sub _get_page {
     my $html = $r->get_page($page_name) || '';
 
     while ($html =~ s/<a href="([\w_]+)"\s*>/'<a href="' . _linkify($r, $1) . '">'/eg) {}
+
+    $html =~ s#^<div class="wiki">(.+)</div>\s*$#$1#s;
     return $html;
 }
 
