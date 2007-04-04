@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use base 'Blikistan::MagicEngine::TT2';
 use base 'Blikistan::MagicEngine::YamlConfig';
+use URI::Escape;
 
 sub print_blog {
     my $self = shift;
@@ -13,7 +14,8 @@ sub print_blog {
     $params->{blog_tag} ||= $self->{blog_tag};
 
     if (my $who = $self->{subblog}) {
-        $params->{blog_tag} = $params->{subblogs}{$who}{blog_tag};
+        my $sub_tag = $params->{subblogs}{$who};
+        $params->{blog_tag} = $sub_tag ? $sub_tag->{blog_tag} : $who;
     }
 
     my $show_latest = delete $params->{show_latest_posts}
@@ -28,7 +30,7 @@ sub print_blog {
             title => $_, 
             content => _get_page($r, $_),
             permalink => _linkify($r, $_),
-            date => $r->response->header('Last-Modified'),
+            date => scalar($r->response->header('Last-Modified')),
         }, @posts,
     ];
 
@@ -37,8 +39,8 @@ sub print_blog {
 
 sub _linkify {
     my $r = shift;
-    my $page = shift;
-    return $r->server . $r->workspace . "/index.cgi?$page";
+    my $page = uri_escape(shift);
+    return $r->server . '/' . $r->workspace . "/index.cgi?$page";
 }
 
 sub _get_page {
@@ -46,7 +48,7 @@ sub _get_page {
     my $page_name = shift;
     my $html = $r->get_page($page_name) || '';
 
-    while ($html =~ s/<a href="([\w_]+)"\s*>/'<a href="' . _linkify($r, $1) . '">'/eg) {}
+    while ($html =~ s/<a href="([\w_]+)"\s*/'<a href="' . _linkify($r, $1) . '"'/eg) {}
 
     $html =~ s#^<div class="wiki">(.+)</div>\s*$#$1#s;
     return $html;

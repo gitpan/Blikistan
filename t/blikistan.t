@@ -12,16 +12,13 @@ BEGIN {
 
 my $r = Socialtext::Resting::Mock->new(
     server => 'http://test',
-    workspace => '/wksp',
+    workspace => 'wksp',
 );
 
 Render_page: {
     $r->put_page('Blog Config', "title: bar\n");
     $r->put_page('post1', 'content1');
     $r->put_pagetag('post1', 'blog post');
-    $r->put_page('post2', 'content2');
-    $r->put_pagetag('post2', 'blog post');
-    $r->set_taggedpages('blog post', ['post1', 'post2']);
     $r->response->set_always('header', 'Today');
     my $b = Blikistan->new(
         rester => $r,
@@ -36,10 +33,6 @@ Posts:
   title: post1
   content: content1
   permalink: http://test/wksp/index.cgi?post1
-  date: Today
-  title: post2
-  content: content2
-  permalink: http://test/wksp/index.cgi?post2
   date: Today
 EOT
 }

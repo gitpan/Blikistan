@@ -41,7 +41,7 @@ Blikistan (both the country and software) is completely paperless.
 
 =cut
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 =head1 FUNCTIONS
 
@@ -94,7 +94,12 @@ sub print_blog {
         rester => $self->{rester},
         %{ $self->{magic_opts} },
     );
-    $me->print_blog;
+    my $output;
+    eval {
+        $output = $me->print_blog;
+    };
+    warn $@ if $@;
+    return $output;
 }
 
 =head1 AUTHOR
