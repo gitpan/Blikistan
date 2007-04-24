@@ -34,6 +34,9 @@ sub print_blog {
         }, @posts,
     ];
 
+    # Hide password, so it's not visible to the templates
+    $r->{password} = undef;
+
     return $self->render_template( $params );
 }
 

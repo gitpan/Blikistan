@@ -1,3 +1,7 @@
+0.05 - Mon Apr 23 22:21:20 PDT 2007
+ - hide rester password from templates
+ - add PerlSite magic engine (Hydra)
+
 0.04 - Wed Apr  4 15:37:33 PDT 2007
  - Bug fixes
 
