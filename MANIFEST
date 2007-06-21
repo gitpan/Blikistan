@@ -14,6 +14,7 @@ lib/Blikistan.pm
 lib/Blikistan/MagicEngine.pm
 lib/Blikistan/MagicEngine/Perl.pm
 lib/Blikistan/MagicEngine/PerlSite.pm
+lib/Blikistan/MagicEngine/Simple.pm
 lib/Blikistan/MagicEngine/Python.pm
 lib/Blikistan/MagicEngine/TT2.pm
 lib/Blikistan/MagicEngine/Jemplate.pm
